@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact Us - Janta College of Education</title>
+    <meta name="description" content="Janta College of Education – inspiring teachers, shaping futures." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: {
+                            DEFAULT: '#17a54b', // Primary Green
+                            dark: '#097731', // Darker Green
+                            light: '#e8f6ed', // Light Green Background
+                        },
+                        muted: '#374151',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* 1. Shimmer Effect for Accent Text (Copied from index3.html) */
+        .shimmer {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, rgba(34, 197, 94, 0.5) 12%, #17a54b 49%, rgba(34, 197, 94, 0.5) 88%);
+            background-size: 200% 100%;
+            animation: shimmer-anim 3s linear infinite;
+        }
+
+        @keyframes shimmer-anim {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* 2. Button Hover Shine Effect (Copied from index3.html) */
+        .btn-hover-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hover-shine::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-hover-shine:hover::before {
+            left: 100%;
+        }
+
+        /* 3. Custom Floating Label for Form (Copied from index3.html) */
+        .form-group {
+            position: relative;
+        }
+        .form-input {
+            border: none;
+            border-bottom: 2px solid #D1D5DB;
+            background-color: transparent;
+            width: 100%;
+            padding-top: 1rem;
+            padding-bottom: 0.25rem;
+            transition: border-color 0.3s ease;
+            color: #374151;
+        }
+        .form-label {
+            position: absolute;
+            top: 0.75rem;
+            left: 0;
+            color: #6B7280;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        /* Adjusted selectors to match original contact.html form structure's logic */
+        .contact-form .form-group input:focus + .form-label,
+        .contact-form .form-group input:not(:placeholder-shown) + .form-label,
+        .contact-form .form-group textarea:focus + .form-label,
+        .contact-form .form-group textarea:not(:placeholder-shown) + .form-label {
+            top: -0.5rem;
+            left: 0;
+            font-size: 0.875rem;
+            color: #097731; /* accent-dark */
+            font-weight: 600;
+        }
+        .form-input::placeholder {
+            color: transparent;
+        }
+
+
+        /* Existing contact.html styles, adapted to use index3.html's Tailwind config */
+        :root {
+            --bg: #fff;
+            --card: #f3f4f6;
+            --accent: #17a54b;
+            /* Green */
+            --accent-dark: #097731;
+            --glass: rgba(255, 255, 255, 0.04);
+            --muted: #374151;
+            --radius: 16px;
+            --maxw: 1100px;
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            color: #222;
+            /* Ensure smooth scroll from index3.html is applied via class="scroll-smooth" on html tag */
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            width: clamp(320px, 90%, 1200px);
+            margin: 0 auto
+        }
+
+        /* Re-mapping h-sub and h-title to Tailwind classes used in index3.html */
+        .h-sub {
+            /* inline-block bg-accent-light text-accent-dark text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider */
+            display: inline-block;
+            background: var(--accent-light, #e8f6ed);
+            color: var(--accent-dark, #097731);
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .h-title {
+            /* mt-2 text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight */
+            margin-top: 0.5rem;
+            font-size: 1.875rem; /* text-3xl */
+            line-height: 2.25rem;
+            font-weight: 800;
+            color: #111827; /* text-gray-900 */
+            letter-spacing: -0.025em;
+        }
+
+        /* Form styling fix for the switch from border-bottom to floating label system */
+        .contact-form h2, .contact-info h2 {
+            margin-bottom: 2rem;
+            color: var(--accent-dark);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            /* Inherit the new index3.html style */
+            border-bottom: 2px solid #D1D5DB;
+        }
+        
+        /* Contact page layout styling */
+        .contact-wrapper-card {
+            background: linear-gradient(180deg, #ffffff, #fafafa);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.10);
+            border: 1px solid rgba(34, 197, 94, 0.08);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+        }
+
+        .info-item .icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-right: 1.5rem;
+            width: 48px; /* Adjusted from 45px to match index3.html design logic (w-12 h-12) */
+            height: 48px; /* Adjusted from 45px to match index3.html design logic (w-12 h-12) */
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        /* Overriding old hover effect to match index3.html's new look */
+        .info-item:hover .icon {
+            transform: scale(1.05); /* Lighter effect */
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .info-item p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--muted);
+        }
+
+        .info-item p strong {
+            display: block;
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .social-media {
+            margin-top: 2.5rem;
+        }
+
+        .social-media p {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-dark);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 992px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white antialiased">
+
+    <header class="bg-white/70 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-lg shadow-green-900/5 border-b border-green-900/10">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 flex-shrink-0 group">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-accent grid place-items-center shadow-md shadow-green-600/30 transition-transform duration-300 group-hover:rotate-6">
+                        <img src="School logo.jpg" alt="Janta College Logo" class="rounded-lg object-cover w-10 h-10">
+                    </div>
+                    <div>
+                        <div class="font-extrabold text-accent-dark text-xl">Janta College</div>
+                        <div class="text-xs text-muted -mt-1 hidden sm:block">College of Education</div>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex md:items-center md:space-x-4">
+                    <a href="index.html" class="text-muted hover:bg-accent-light hover:text-accent-dark px-3 py-2 rounded-full text-sm font-medium transition-colors">Home</a>
+                    <a href="index.html#about" class="text-muted hover:bg-accent-light hover:text-accent-dark px-3 py-2 rounded-full text-sm font-medium transition-colors">About</a>
+                    <a href="index.html#campus" class="text-muted hover:bg-accent-light hover:text-accent-dark px-3 py-2 rounded-full text-sm font-medium transition-colors">Campus</a>
+                    <a href="contact.html" class="text-accent-dark bg-accent-light px-3 py-2 rounded-full text-sm font-medium transition-colors">Contact</a>
+                </div>
+
+                <div class="hidden md:block">
+                     <a href="#contact"
+                        class="btn-hover-shine relative overflow-hidden inline-flex items-center px-5 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-accent shadow-lg shadow-green-600/40 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-300 transform hover:-translate-y-0.5">
+                        Apply Now
+                    </a>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-accent-dark hover:bg-accent-light focus:outline-none focus:bg-accent-light focus:text-accent-dark transition-colors"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon-closed" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-open" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+
+        <div class="md:hidden hidden transition-all duration-300" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">Home</a>
+                <a href="index.html#about" class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">About</a>
+                <a href="index.html#campus" class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">Campus</a>
+                <a href="contact.html" class="nav-link-mobile text-accent-dark bg-accent-light block px-3 py-2 rounded-lg text-base font-medium transition-colors">Contact</a>
+            </div>
+            <div class="p-4 border-t border-gray-100">
+                <a href="#contact"
+                    class="nav-link-mobile btn-hover-shine relative overflow-hidden block w-full text-center px-4 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-accent shadow-md shadow-green-600/40 hover:bg-accent-dark transition-all duration-300">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <section id="contact-form-section" class="py-16 md:py-24" style="padding-top: 120px;">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-left" data-aos="fade-up">
+                    <span class="h-sub">Get In Touch</span>
+                    <h2 class="h-title">Contact Us</h2>
+                </div>
+                <p class="text-muted" data-aos="fade-up" data-aos-delay="100"
+                    style="text-align: left; max-width: 600px; margin-top: 1rem; margin-bottom: 2.5rem;">
+                    We'd love to hear from you! Reach out to us with any questions.
+                </p>
+
+                <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-xl shadow-green-900/10 border border-green-900/10"
+                    data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="contact-form" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
+                            <h3 class="text-2xl font-bold text-accent-dark">Send us a Message</h3>
+                            <form id="contactForm" class="mt-8 space-y-8" onsubmit="handleForm(event)">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" class="form-input" placeholder="Full Name" required>
+                                    <label for="name" class="form-label">Full Name</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="Email Address" required>
+                                    <label for="email" class="form-label">Email Address</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="subject" name="subject" class="form-input" placeholder="Subject" required>
+                                    <label for="subject" class="form-label">Subject</label>
+                                </div>
+                                <div class="form-group">
+                                    <textarea id="message" name="message" rows="4" class="form-input" placeholder="Your Message" required></textarea>
+                                    <label for="message" class="form-label">Your Message</label>
+                                </div>
+                                <div>
+                                    <button type="submit"
+                                        class="btn-hover-shine relative overflow-hidden w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md shadow-green-600/40 text-base font-medium text-white bg-accent hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-300 transform hover:-translate-y-0.5">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                            <p id="form-message" class="mt-4 text-accent-dark font-medium"></p>
+                        </div>
+
+                        <div class="contact-info" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
+                            <h3 class="text-2xl font-bold text-accent-dark">Contact Information</h3>
+                            <div class="mt-8 space-y-6">
+                                <div class="info-item" data-aos="fade-left" data-aos-delay="500">
+                                    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Address</h5>
+                                        <p class="text-muted">Pritampura Road, Nathupur, Sector 46, Sonepat 131029</p>
+                                    </div>
+                                </div>
+                                <div class="info-item" data-aos="fade-left" data-aos-delay="600">
+                                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Email</h5>
+                                        <a href="mailto:collegejantanathupur@gmail.com" class="text-accent hover:text-accent-dark hover:underline text-muted">collegejantanathupur@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="info-item" data-aos="fade-left" data-aos-delay="700">
+                                    <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Phone</h5>
+                                        <a href="tel:+919466492205" class="text-accent hover:text-accent-dark hover:underline text-muted">+91 94664 92205</a>
+                                    </div>
+                                </div>
+                                <div class="info-item" data-aos="fade-left" data-aos-delay="800">
+                                    <div class="icon"><i class="fas fa-clock"></i></div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Office Hours</h5>
+                                        <p class="text-muted">Mon - Fri: 9:00 AM - 5:00 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="social-media mt-8" data-aos="fade-left" data-aos-delay="900">
+                                <h5 class="font-semibold text-gray-900 mb-4">Follow Us</h5>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="w-10 h-10 rounded-full bg-accent-light hover:bg-accent-dark grid place-items-center transition-colors text-accent-dark hover:text-white" title="Facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-accent-light hover:bg-accent-dark grid place-items-center transition-colors text-accent-dark hover:text-white" title="Twitter">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-accent-light hover:bg-accent-dark grid place-items-center transition-colors text-accent-dark hover:text-white" title="Instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-accent-light hover:bg-accent-dark grid place-items-center transition-colors text-accent-dark hover:text-white" title="LinkedIn">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-2" data-aos="fade-up">
+                    <h6 class="text-lg font-semibold text-white">About Janta College</h6>
+                    <p class="mt-4 text-sm">
+                        Inspiring the next generation of teachers with passion, skill, and purpose.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700/50 hover:bg-accent-dark grid place-items-center transition-colors text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700/50 hover:bg-accent-dark grid place-items-center transition-colors text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700/50 hover:bg-accent-dark grid place-items-center transition-colors text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700/50 hover:bg-accent-dark grid place-items-center transition-colors text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h6 class="text-base font-semibold text-white">Quick Links</h6>
+                    <ul class="mt-4 space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-accent transition-colors duration-200">Home</a></li>
+                        <li><a href="index.html#about" class="hover:text-accent transition-colors duration-200">About Us</a></li>
+                        <li><a href="index.html#campus" class="hover:text-accent transition-colors duration-200">Campus</a></li>
+                        <li><a href="contact.html" class="hover:text-accent transition-colors duration-200">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h6 class="text-base font-semibold text-white">Contact</h6>
+                    <ul class="mt-4 space-y-3 text-sm">
+                        <li><a href="mailto:collegejantanathupur@gmail.com" class="hover:text-accent transition-colors duration-200">collegejantanathupur@gmail.com</a></li>
+                        <li><a href="tel:+919466492205" class="hover:text-accent transition-colors duration-200">+91 94664 92205</a></li>
+                        <li>Haryana, Sonepat, India</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 border-t border-gray-700/50 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 1998 - <span id="year"></span> Janta College of Education. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0">Inspired by excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // 1. Initialize AOS (Animation On Scroll)
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+                disable: 'mobile'
+            });
+
+            // 2. Mobile Menu Toggle (Copied from index3.html)
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClosed = document.getElementById('menu-icon-closed');
+
+            menuButton.addEventListener('click', () => {
+                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+                menuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden');
+                iconClosed.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('.nav-link-mobile').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.classList.add('hidden');
+                    iconOpen.classList.add('hidden');
+                    iconClosed.classList.remove('hidden');
+                });
+            });
+
+            // 3. Set Current Year in Footer (Copied from index3.html)
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 4. Contact Form Handler (Client-side demo - adapted to index3.html style)
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('form-message');
+
+            function handleForm(e) {
+                e.preventDefault();
+
+                // Simulates a successful form submission
+                formMessage.textContent = 'Thanks, we received your message. We will get back to you soon!';
+                formMessage.classList.add('text-accent', 'font-bold');
+
+                e.target.reset();
+
+                // Clear message after a few seconds
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                    formMessage.classList.remove('text-accent', 'font-bold');
+                }, 5000);
+            }
+
+            contactForm.addEventListener('submit', handleForm);
+        });
+    </script>
+</body>
+
+</html>
