@@ -287,7 +287,7 @@
                 <a href="index.html" class="flex items-center gap-3 flex-shrink-0 group">
                     <div
                         class="flex-shrink-0 w-12 h-12 rounded-lg bg-accent grid place-items-center shadow-md shadow-green-600/30 transition-transform duration-300 group-hover:rotate-6">
-                        <img src="ADD.webp" alt="Janta College Logo" class="rounded-lg object-cover w-10 h-10">
+                        <img src="School logo.jpg" alt="Janta College Logo" class="rounded-lg object-cover w-10 h-10">
                     </div>
                     <div>
                         <div class="font-extrabold text-accent-dark text-xl">Janta College</div>
@@ -362,8 +362,8 @@
                     data-aos="zoom-in-up" data-aos-delay="200">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                         <div class="contact-form" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
-                            <form action="https://formspree.io/f/xnnoeyal" method="POST">
                             <h3 class="text-2xl font-bold text-accent-dark">Send us a Message</h3>
+                            <form id="contactForm" class="mt-8 space-y-8" onsubmit="handleForm(event)">
                                 <div class="form-group">
                                     <input type="text" id="name" name="name" class="form-input" placeholder="Full Name" required>
                                     <label for="name" class="form-label">Full Name</label>
@@ -540,7 +540,7 @@
             // 3. Set Current Year in Footer (Copied from index3.html)
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            4. Contact Form Handler (Client-side demo - adapted to index3.html style)
+            // 4. Contact Form Handler (Client-side demo - adapted to index3.html style)
             const contactForm = document.getElementById('contactForm');
             const formMessage = document.getElementById('form-message');
 
@@ -565,9 +565,4 @@
     </script>
 </body>
 
-
 </html>
-
-
-
-
