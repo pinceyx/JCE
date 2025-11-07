@@ -541,30 +541,31 @@
             document.getElementById('year').textContent = new Date().getFullYear();
 
             // 4. Contact Form Handler (Client-side demo - adapted to index3.html style)
-            const contactForm = document.getElementById('contactForm');
-            const formMessage = document.getElementById('form-message');
+        //     const contactForm = document.getElementById('contactForm');
+        //     const formMessage = document.getElementById('form-message');
 
-            function handleForm(e) {
-                e.preventDefault();
+        //     function handleForm(e) {
+        //         e.preventDefault();
 
-                // Simulates a successful form submission
-                formMessage.textContent = 'Thanks, we received your message. We will get back to you soon!';
-                formMessage.classList.add('text-accent', 'font-bold');
+        //         // Simulates a successful form submission
+        //         formMessage.textContent = 'Thanks, we received your message. We will get back to you soon!';
+        //         formMessage.classList.add('text-accent', 'font-bold');
 
-                e.target.reset();
+        //         e.target.reset();
 
-                // Clear message after a few seconds
-                setTimeout(() => {
-                    formMessage.textContent = '';
-                    formMessage.classList.remove('text-accent', 'font-bold');
-                }, 5000);
-            }
+        //         // Clear message after a few seconds
+        //         setTimeout(() => {
+        //             formMessage.textContent = '';
+        //             formMessage.classList.remove('text-accent', 'font-bold');
+        //         }, 5000);
+        //     }
 
-            contactForm.addEventListener('submit', handleForm);
-        });
+        //     contactForm.addEventListener('submit', handleForm);
+        // });
     </script>
 </body>
 
 
 </html>
+
 
