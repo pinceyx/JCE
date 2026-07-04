@@ -49,6 +49,29 @@
             setInterval(() => {
                 showSlide((current + 1) % slides.length);
             }, 5000);
+
+            const facilitySlides = document.querySelectorAll(".facility-slide");
+            let facilityCurrent = 0;
+
+            function showFacilitySlide(index) {
+                facilitySlides.forEach(slide => {
+                    slide.classList.remove("opacity-100");
+                    slide.classList.add("opacity-0");
+                    slide.classList.add("pointer-events-none");
+                });
+                facilitySlides[index].classList.remove("opacity-0");
+                facilitySlides[index].classList.add("opacity-100");
+                facilitySlides[index].classList.remove("pointer-events-none");
+                facilityCurrent = index;
+            }
+
+            facilitySlides.forEach((slide, idx) => {
+                if (idx !== 0) slide.classList.add("pointer-events-none");
+            });
+
+            setInterval(() => {
+                showFacilitySlide((facilityCurrent + 1) % facilitySlides.length);
+            }, 5000);
         });
 
         //----------------------------------------------------Tailwindcss-----------------------------------------------------------------------
@@ -145,6 +168,11 @@
 
         .form-input::placeholder {
             color: transparent;
+        }
+
+        .facility-slide {
+            position: absolute;
+            inset: 0;
         }
     </style>
 </head>
@@ -412,6 +440,65 @@
                             <div
                                 class="h-32 rounded-lg bg-gradient-to-br from-green-600 to-green-700 text-white font-semibold p-4 flex items-center justify-center text-center shadow-lg shadow-green-600/30 transform hover:scale-[1.05] transition-transform duration-300">
                                 Excellence in Teacher Training
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilities Slideshow -->
+        <section id="facilities-gallery" class="py-16 md:py-24 bg-white">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-left" data-aos="fade-up">
+                    <span
+                        class="inline-block bg-accent-light text-accent-dark text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Facilities</span>
+                    <h2 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
+                        Campus Facilities at a Glance
+                    </h2>
+                    <p class="mt-4 text-muted max-w-2xl">Discover the spaces that support learning, practice teaching and student life on campus.</p>
+                </div>
+
+                <div class="mt-10 relative overflow-hidden rounded-3xl shadow-xl shadow-green-900/10 border border-green-900/10"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-[420px] md:h-[520px]">
+                        <div class="facility-slide absolute inset-0 opacity-100 transition-opacity duration-1000">
+                            <img src="images/college1.jpg" alt="Digital library and learning resource centre"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-8 md:p-10">
+                                <span class="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-sm font-semibold text-white">Facility</span>
+                                <h3 class="mt-3 text-2xl md:text-3xl font-bold text-white">Digital library & learning resource centre</h3>
+                            </div>
+                        </div>
+
+                        <div class="facility-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="images/college2.jpg" alt="Observation and model classrooms"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-8 md:p-10">
+                                <span class="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-sm font-semibold text-white">Facility</span>
+                                <h3 class="mt-3 text-2xl md:text-3xl font-bold text-white">Observation & model classrooms</h3>
+                            </div>
+                        </div>
+
+                        <div class="facility-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="images/college3.jpg" alt="Computer lab with e-learning tools"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-8 md:p-10">
+                                <span class="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-sm font-semibold text-white">Facility</span>
+                                <h3 class="mt-3 text-2xl md:text-3xl font-bold text-white">Computer lab with e-learning tools</h3>
+                            </div>
+                        </div>
+
+                        <div class="facility-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="images/college1.jpg" alt="Hostel and canteen"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-8 md:p-10">
+                                <span class="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-sm font-semibold text-white">Facility</span>
+                                <h3 class="mt-3 text-2xl md:text-3xl font-bold text-white">Hostel & canteen</h3>
                             </div>
                         </div>
                     </div>
