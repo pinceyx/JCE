@@ -174,6 +174,16 @@
             position: absolute;
             inset: 0;
         }
+
+        .dropdown-menu {
+            display: none;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu,
+        .dropdown-menu.show {
+            display: block;
+        }
     </style>
 </head>
 
@@ -200,6 +210,18 @@
                 <div class="hidden md:flex md:items-center md:space-x-4">
                     <a href="#home"
                         class="text-muted hover:bg-accent-light hover:text-accent-dark px-3 py-2 rounded-full text-sm font-medium transition-colors">Home</a>
+                    <div class="dropdown relative group">
+                        <a href="#home" data-dropdown-trigger
+                            class="text-muted hover:bg-accent-light hover:text-accent-dark px-3 py-2 rounded-full text-sm font-medium transition-colors">Student Corner</a>
+                        <div class="dropdown-menu absolute left-0 mt-2 hidden z-50 w-48 rounded-xl border border-green-900/10 bg-white p-2 shadow-xl shadow-green-900/10">
+                            <a href="#home"
+                                class="block rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-accent-light hover:text-accent-dark">Overview</a>
+                            <a href="#campus"
+                                class="block rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-accent-light hover:text-accent-dark">Campus</a>
+                            <a href="contact.html"
+                                class="block rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-accent-light hover:text-accent-dark">Contact</a>
+                        </div>
+                    </div>
                     <a href="#about"
                         class="text-muted hover:bg-accent-light hover:text-accent-dark px-3 py-2 rounded-full text-sm font-medium transition-colors">About</a>
                     <a href="#campus"
@@ -244,6 +266,18 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#home"
                     class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">Home</a>
+                <div class="dropdown">
+                    <a href="#home" data-dropdown-trigger
+                        class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">Student Corner</a>
+                    <div class="dropdown-menu mt-2 hidden space-y-1 pl-3">
+                        <a href="#home"
+                            class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">Overview</a>
+                        <a href="#campus"
+                            class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">Campus</a>
+                        <a href="contact.html"
+                            class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
                 <a href="#about"
                     class="nav-link-mobile text-muted hover:bg-accent-light hover:text-accent-dark block px-3 py-2 rounded-lg text-base font-medium transition-colors">About</a>
                 <a href="#campus"
@@ -346,7 +380,9 @@
 
         </section>
 
-        <!-- About Section -->
+        <!-----------------------------------------------------------Student Corner------------------------------------------------------->
+
+        <!--------------------------------------------------- About Section -------------------------------------------------------------->
         <section id="about" class="py-16 md:py-24 bg-white">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="text-left" data-aos="fade-up">
@@ -360,12 +396,12 @@
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                     <!-- Text Content (Animated: fade-up, delayed) -->
                     <div class="space-y-6 text-muted" data-aos="fade-up" data-aos-delay="200">
-                        <p>Janta College of Education, established in 1998, has been committed to training teachers who
+                        <p>Janta College of Education, established in 2010, has been committed to training teachers who
                             are compassionate, innovative and equipped with modern pedagogy. Our graduates serve in
                             schools across the region, contributing to improved learning outcomes and community
                             development.</p>
                         <p>Our College is affiliated with CH. Ranbir Singh University JIND (H.R). College Code 1186 B.ED
-                            course recognized by N.C.T.E New Delhi.</p>
+                            course recognized by N.C.T.E New Delhi. Established at </p>
 
                         <h3 class="text-2xl font-bold text-accent-dark pt-2">Mission</h3>
                         <p>To prepare reflective, ethical and skilled educators through rigorous training, classroom
@@ -646,7 +682,57 @@
                 disable: 'mobile' // You can disable on very small devices if performance is a concern, but it should be smooth.
             });
 
-            // 2. Mobile Menu Toggle
+            // 2. Dropdown Menus (hover + click)
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                const trigger = dropdown.querySelector('[data-dropdown-trigger]');
+                const menu = dropdown.querySelector('.dropdown-menu');
+
+                if (!trigger || !menu) return;
+
+                let hideTimer;
+
+                const openMenu = () => {
+                    document.querySelectorAll('.dropdown-menu').forEach(item => item.classList.add('hidden'));
+                    menu.classList.remove('hidden');
+                    menu.classList.add('show');
+                };
+
+                const closeMenu = () => {
+                    clearTimeout(hideTimer);
+                    hideTimer = setTimeout(() => {
+                        menu.classList.add('hidden');
+                        menu.classList.remove('show');
+                    }, 120);
+                };
+
+                dropdown.addEventListener('mouseenter', openMenu);
+                dropdown.addEventListener('mouseleave', closeMenu);
+
+                trigger.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    const isOpen = !menu.classList.contains('hidden');
+                    document.querySelectorAll('.dropdown-menu').forEach(item => item.classList.add('hidden'));
+
+                    if (!isOpen) {
+                        openMenu();
+                    } else {
+                        closeMenu();
+                    }
+                });
+
+                menu.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+                menu.addEventListener('mouseleave', closeMenu);
+                menu.addEventListener('click', (event) => event.stopPropagation());
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(item => item.classList.add('hidden'));
+                }
+            });
+
+            // 3. Mobile Menu Toggle
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const iconOpen = document.getElementById('menu-icon-open');
@@ -670,10 +756,10 @@
                 });
             });
 
-            // 3. Set Current Year in Footer
+            // 4. Set Current Year in Footer
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // 4. Contact Form Handler (Client-side demo)
+            // 5. Contact Form Handler (Client-side demo)
             // const contactForm = document.getElementById('contactForm');
             // const formMessage = document.getElementById('form-message');
 
